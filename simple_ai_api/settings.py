@@ -4,16 +4,27 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+
+################fOR RAILWAYS####################
+import json
 import firebase_admin
-from firebase_admin import credentials, firestore
+from firebase_admin import credentials, initialize_app
 
-# Inisialisasi Firebase hanya sekali
 if not firebase_admin._apps:
-    cred_path = os.environ.get("FIREBASE_KEY_PATH", os.path.join(BASE_DIR, "interior-f2f4e-firebase-adminsdk-8yqoa-6e4a9f7f48.json"))
-    cred = credentials.Certificate(cred_path)
-    firebase_admin.initialize_app(cred)
+    cred_info = json.loads(os.getenv("FIREBASE_CREDENTIAL"))
+    cred = credentials.Certificate(cred_info)
+    initialize_app(cred)
 
-db = firestore.client()
+# import firebase_admin
+# from firebase_admin import credentials, firestore
+
+# # Inisialisasi Firebase hanya sekali
+# if not firebase_admin._apps:
+#     cred_path = os.environ.get("FIREBASE_KEY_PATH", os.path.join(BASE_DIR, "interior-f2f4e-firebase-adminsdk-8yqoa-6e4a9f7f48.json"))
+#     cred = credentials.Certificate(cred_path)
+#     firebase_admin.initialize_app(cred)
+
+# db = firestore.client()
 
 
 # Quick-start development settings - unsuitable for production
