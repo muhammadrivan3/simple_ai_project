@@ -1,8 +1,19 @@
 
 from pathlib import Path
-
+import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+import firebase_admin
+from firebase_admin import credentials, firestore
+
+# Inisialisasi Firebase hanya sekali
+if not firebase_admin._apps:
+    cred_path = os.environ.get("FIREBASE_KEY_PATH", os.path.join(BASE_DIR, "interior-f2f4e-firebase-adminsdk-8yqoa-6e4a9f7f48.json"))
+    cred = credentials.Certificate(cred_path)
+    firebase_admin.initialize_app(cred)
+
+db = firestore.client()
 
 
 # Quick-start development settings - unsuitable for production
@@ -125,8 +136,8 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-import firebase_admin
-from firebase_admin import credentials
+# import firebase_admin
+# from firebase_admin import credentials
 
-cred = credentials.Certificate('interior-f2f4e-firebase-adminsdk-8yqoa-6e4a9f7f48.json')
-firebase_admin.initialize_app(cred)
+# cred = credentials.Certificate('interior-f2f4e-firebase-adminsdk-8yqoa-6e4a9f7f48.json')
+# firebase_admin.initialize_app(cred)
