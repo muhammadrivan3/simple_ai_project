@@ -13,4 +13,8 @@ COPY --from=builder /app .
 
 COPY . .
 
-CMD ["python", "app.py"]
+# Install gunicorn (if not in requirements.txt)
+RUN pip install gunicorn
+
+# CMD ["python", "app.py"]
+CMD ["gunicorn", "simple_ai_api.wsgi:application", "--bind", "0.0.0.0:8000"]
