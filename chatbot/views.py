@@ -11,7 +11,7 @@ def chat(request):
         reply = learn_and_reply(user_msg)
         return JsonResponse({"reply": reply})
     return JsonResponse({"error": "Invalid request."})
-
+@csrf_exempt
 def train(user_msg, correct_reply):
     """
     Fungsi untuk melatih chatbot dengan percakapan baru yang diberikan.
