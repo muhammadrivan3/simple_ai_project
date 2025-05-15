@@ -6,14 +6,23 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 
 ################fOR RAILWAYS####################
-import json
-import firebase_admin
-from firebase_admin import credentials, initialize_app
+# import json
+# import firebase_admin
+# from firebase_admin import credentials, initialize_app
 
-if not firebase_admin._apps:
-    cred_info = json.loads(os.getenv("FIREBASE_CREDENTIAL"))
-    cred = credentials.Certificate(cred_info)
-    initialize_app(cred)
+# if not firebase_admin._apps:
+#     cred_info = json.loads(os.getenv("FIREBASE_CREDENTIAL"))
+#     cred = credentials.Certificate(cred_info)
+#     initialize_app(cred)
+
+# LOCAL
+
+import firebase_admin
+from firebase_admin import credentials
+
+cred = credentials.Certificate('interior-f2f4e-firebase-adminsdk-8yqoa-6e4a9f7f48.json')
+firebase_admin.initialize_app(cred)
+
 
 # import firebase_admin
 # from firebase_admin import credentials, firestore
@@ -146,9 +155,3 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# import firebase_admin
-# from firebase_admin import credentials
-
-# cred = credentials.Certificate('interior-f2f4e-firebase-adminsdk-8yqoa-6e4a9f7f48.json')
-# firebase_admin.initialize_app(cred)
